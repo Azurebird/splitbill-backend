@@ -1,11 +1,11 @@
-import express from "express";
-import createProfile from "./actions/create";
+import express from 'express';
+import loginProfile from './actions/login';
 
 const router = express.Router();
 
 /**
  * Creates a new profile
  */
-router.post("/", createProfile);
+router.post('/login', loginProfile);
 
 export default router;

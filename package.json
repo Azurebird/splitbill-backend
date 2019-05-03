@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec babel-node -- index.js",
-    "precommit": "pretty-quick --staged"
+    "start": "nodemon --exec babel-node -- index.js"
   },
   "author": "Camilo Andres White",
   "license": "ISC",
@@ -25,8 +24,15 @@
     "pretty-quick": "^1.10.0"
   },
   "dependencies": {
+    "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
   }
 }

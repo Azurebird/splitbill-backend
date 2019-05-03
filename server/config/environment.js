@@ -4,6 +4,6 @@ module.exports = {
   },
   mongo: {
     connection_url:
-      process.env.MONGO_CONNECTION_STR || "mongodb://localhost:27017/splitbill"
+      process.env.MONGO_CONNECTION_STR || 'mongodb://localhost:27017/splitbill'
   }
 };

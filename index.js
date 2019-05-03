@@ -1,7 +1,7 @@
-import bodyParser from "body-parser";
-import express from "express";
-import routes from "./server/routes";
-import mongo from "./config/mongo";
+import bodyParser from 'body-parser';
+import express from 'express';
+import routes from './server/routes';
+import mongo from './server/config/mongo';
 
 const app = express();
 const port = 8080;
