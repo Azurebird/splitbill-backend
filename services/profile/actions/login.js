@@ -4,8 +4,7 @@ export default async function login(req, res) {
   try {
     const { email, password } = req.body.credentials;
 
-    let profile = await Profile.findOne({ email });
-
+    const profile = await Profile.findOne({ email });
     if (profile && !profile.isValidPassword(password)) {
       res.status(400).json({ errors: { global: 'Invalid credentials' } });
     } else if (profile) {
