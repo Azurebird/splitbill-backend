@@ -20,6 +20,7 @@ function isValidPassword(password) {
 function generateJWT() {
   return jwt.sign(
     {
+      profileId: this.profileId,
       email: this.email
     },
     env.jwt.secret
