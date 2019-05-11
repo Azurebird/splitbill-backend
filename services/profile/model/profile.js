@@ -1,10 +1,12 @@
-import mongoose, { Schema } from 'mongoose';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import mongoose, { Schema } from 'mongoose';
+import shortid from 'shortid';
 import env from '../../../server/config/environment';
 
 const ProfileSchema = new Schema(
   {
+    profileId: { type: String, default: shortid.generate },
     email: { type: String, required: true, unique: true },
     hashPassword: { type: String, required: true }
   },
