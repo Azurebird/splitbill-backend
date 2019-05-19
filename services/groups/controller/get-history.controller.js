@@ -1,11 +1,11 @@
 import { buildResponse, buildErrorResponse } from '../../utils/api-response';
-import getGroupsAction from '../actions/get-groups.action';
+import getHistoryAction from '../actions/get-history.action';
 
 export default async function getGroups(req, res) {
   try {
-    const { profileId } = req.user;
-    const { groups } = await getGroupsAction({ profileId });
-    return buildResponse(res, { groups });
+    const { groupId } = req.body;
+    const { history } = await getHistoryAction({ groupId });
+    return buildResponse(res, { history });
   } catch (error) {
     return buildErrorResponse(res, error);
   }

@@ -6,7 +6,7 @@ import env from '../../../server/config/environment';
 
 const HistoryDetailSchema = new Schema({
   groupHistoryId: { type: String, default: shortid.generate },
-  profileId: { required: true },
+  profileId: { type: String, required: true },
   detail: { type: String, required: true },
   amount: { type: Number, required: true }
 });
@@ -14,12 +14,23 @@ const HistoryDetailSchema = new Schema({
 const GroupHistorySchema = new Schema(
   {
     groupHistoryId: { type: String, default: shortid.generate },
-    groupId: { required: true },
+    groupId: { type: String, required: true },
     settleDown: { type: Boolean },
     historyDetail: { type: [HistoryDetailSchema] }
   },
   { timestamps: true }
 );
+
+function getActiveHistory({ groupId }) {
+  return this.findOne({
+    groupId,
+    settleDown: false
+  });
+}
+
+GroupHistorySchema.statics = {
+  getActiveHistory
+};
 
 const GroupHistory = mongoose.model('grouphistory', GroupHistorySchema);
 
