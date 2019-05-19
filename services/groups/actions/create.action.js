@@ -1,8 +1,8 @@
-import Group from '../model/group';
+import Group from '../model/group.model';
 
-export default async function create({ profileId, name }) {
+export default async function create({ userId, name }) {
   const group = await Group.create({
-    profileIds: [profileId],
+    userIds: [userId],
     name,
     expenseGroups: []
   });

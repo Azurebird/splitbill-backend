@@ -6,7 +6,7 @@ import env from '../../../server/config/environment';
 
 const ProfileSchema = new Schema(
   {
-    profileId: { type: String, default: shortid.generate },
+    userId: { type: String, default: shortid.generate },
     email: { type: String, required: true, unique: true },
     hashPassword: { type: String, required: true }
   },
@@ -20,7 +20,7 @@ function isValidPassword(password) {
 function generateJWT() {
   return jwt.sign(
     {
-      profileId: this.profileId,
+      userId: this.userId,
       email: this.email
     },
     env.jwt.secret

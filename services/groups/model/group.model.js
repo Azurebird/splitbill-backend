@@ -1,5 +1,6 @@
 import mongoose, { Schema } from 'mongoose';
 import shortid from 'shortid';
+import { throws } from 'assert';
 
 /**
  * An expense made to the group
@@ -30,6 +31,15 @@ const GroupSchema = new Schema(
   },
   { timestamps: true }
 );
+
+function getExpenses({ groupId }) {
+  return this.findOne({
+    groupId,
+    expenseGroups: {
+      settleDown: false
+    }
+  });
+}
 
 const Group = mongoose.model('group', GroupSchema);
 

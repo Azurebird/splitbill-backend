@@ -1,6 +1,6 @@
-import Group from '../model/group';
+import Group from '../model/group.model';
 
-export default async function getGroups({ profileId }) {
-  const groups = await Group.find({ profileIds: profileId });
+export default async function getGroups({ userId }) {
+  const groups = await Group.find({ userIds: userId });
   return { groups };
 }
