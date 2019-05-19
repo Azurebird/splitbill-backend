@@ -10,6 +10,6 @@ router.get('/', verifyToken, getGroups);
 
 router.get('/:groupId', verifyToken, getGroupHistory);
 
-router.post('/', createGroup);
+router.post('/', verifyToken, createGroup);
 
 export default router;
