@@ -4,11 +4,32 @@ import mongoose, { Schema } from 'mongoose';
 import shortid from 'shortid';
 import env from '../../../server/config/environment';
 
+/**
+ * An expense made to the group
+ */
+const ExpenseSchema = new Schema({
+  userIds: { type: String, required: true },
+  detail: { type: String, required: true },
+  amount: { type: Number, required: true }
+});
+
+/**
+ * Groups expnses while the settleDown flag is false
+ */
+const ExpenseGroupSchema = new Schema({
+  settleDown: { type: Boolean, default: false },
+  expenses: { type: [ExpenseSchema] }
+});
+
+/**
+ * A grups where multiple user may be part of it
+ */
 const GroupSchema = new Schema(
   {
     groupId: { type: String, default: shortid.generate },
     name: { type: String, required: true },
-    profileIds: { type: [String] }
+    userIds: { type: [String] },
+    expenseGroups: { type: [ExpenseGroupSchema] }
   },
   { timestamps: true }
 );
