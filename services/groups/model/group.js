@@ -1,8 +1,5 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 import mongoose, { Schema } from 'mongoose';
 import shortid from 'shortid';
-import env from '../../../server/config/environment';
 
 /**
  * An expense made to the group
@@ -29,7 +26,7 @@ const GroupSchema = new Schema(
     groupId: { type: String, default: shortid.generate },
     name: { type: String, required: true },
     userIds: { type: [String] },
-    expenseGroups: { type: [ExpenseGroupSchema] }
+    expenseGroups: { type: [ExpenseGroupSchema], required: true }
   },
   { timestamps: true }
 );
