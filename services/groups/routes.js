@@ -2,7 +2,7 @@ import express from 'express';
 import getGroups from './controller/get.controller';
 import createGroup from './controller/create.controller';
 import getExpensesController from './controller/get-expenses.controller';
-import verifyToken from '../auth/actions/verifyToken';
+import verifyToken from '../auth/components/verify-token.component';
 
 const router = express.Router();
 
