@@ -1,5 +1,5 @@
 import { buildResponse, buildErrorResponse } from '../../utils/api-response';
-import getGroupsAction from '../actions/get-groups.action';
+import getGroupsAction from '../actions/get.action';
 
 export default async function getGroups(req, res) {
   try {
