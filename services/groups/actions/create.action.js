@@ -4,7 +4,7 @@ export default async function create({ userId, name }) {
   const group = await Group.create({
     userIds: [userId],
     name,
-    expenseGroups: []
+    expenseGroups: [{}]
   });
   return { group };
 }

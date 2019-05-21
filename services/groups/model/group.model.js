@@ -1,12 +1,11 @@
 import mongoose, { Schema } from 'mongoose';
 import shortid from 'shortid';
-import { throws } from 'assert';
 
 /**
  * An expense made to the group
  */
 const ExpenseSchema = new Schema({
-  userIds: { type: String, required: true },
+  userId: { type: String, required: true },
   detail: { type: String, required: true },
   amount: { type: Number, required: true }
 });
@@ -16,7 +15,7 @@ const ExpenseSchema = new Schema({
  */
 const ExpenseGroupSchema = new Schema({
   settleDown: { type: Boolean, default: false },
-  expenses: { type: [ExpenseSchema] }
+  expenses: { type: [ExpenseSchema], default: [] }
 });
 
 /**
@@ -27,19 +26,29 @@ const GroupSchema = new Schema(
     groupId: { type: String, default: shortid.generate },
     name: { type: String, required: true },
     userIds: { type: [String] },
-    expenseGroups: { type: [ExpenseGroupSchema], required: true }
+    expenseGroups: { type: [ExpenseGroupSchema], required: true, default: [{}] }
   },
   { timestamps: true }
 );
 
 function getExpenses({ groupId }) {
-  return this.findOne({
-    groupId,
-    expenseGroups: {
-      settleDown: false
+  return this.findOne(
+    {
+      groupId
+    },
+    {
+      expenseGroups: {
+        $elemMatch: {
+          settleDown: false
+        }
+      }
     }
-  });
+  );
 }
+
+GroupSchema.statics = {
+  getExpenses
+};
 
 const Group = mongoose.model('group', GroupSchema);
 
